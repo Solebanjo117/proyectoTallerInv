@@ -3,13 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn = "navigation_view">
 
-    <item android:title="Ventas" />
-    <item android:title="Consultar ventas" />
-    <item android:title="Inventario" />
-    <item android:title="Clientes" />
+    <item
+        android:id="@+id/idVentas"
+        android:title="Ventas" />
+    <item
+        android:id="@+id/idConsVentas"
+        android:title="Consultar ventas" />
+    <item
+        android:id="@+id/idInv"
+        android:title="Inventario" />
+    <item
+        android:id="@+id/idClientes"
+        android:title="Clientes" />
     <item android:title=" ">
         <menu>
-            <item android:title="Cerrar sesion" />
+            <item
+                android:id="@+id/idCerrar"
+                android:title="Cerrar sesion" />
         </menu>
     </item>
 </menu>

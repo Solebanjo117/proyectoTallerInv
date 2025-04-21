@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto"
         tools:targetApi="31">
+        <activity
+            android:name=".Principal"
+            android:exported="true" />
         <activity android:name=".Registro" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">

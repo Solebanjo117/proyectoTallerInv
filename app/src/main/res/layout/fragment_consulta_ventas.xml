@@ -19,8 +19,7 @@
             android:layout_height="wrap_content"
             android:text="Seleccionar fecha"
             android:gravity="center_vertical"
-            android:padding="8dp"
-            android:background="@drawable/border" />
+            android:padding="8dp" />
 
         <Button
             android:id="@+id/searchButton"
