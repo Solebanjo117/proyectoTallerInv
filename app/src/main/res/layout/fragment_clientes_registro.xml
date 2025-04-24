@@ -68,16 +68,18 @@
         android:gravity="center">
 
         <Button
+            android:id="@+id/btnGuardarCliente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp"
+            android:text="Guardar" />
 
         <Button
+            android:id="@+id/btnCancelarCliente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancelar"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginStart="8dp"
+            android:text="Cancelar" />
     </LinearLayout>
 
 </LinearLayout>

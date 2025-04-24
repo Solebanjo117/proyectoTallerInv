@@ -1,0 +1,99 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/nombreProductoEditText"
+            android:hint="Nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/tallaProductoEditText"
+            android:hint="Talla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/colorProductoEditText"
+            android:hint="Color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/precioProductoEditText"
+            android:hint="Precio"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/cantidadProductoEditText"
+            android:hint="Cantidad"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/categoriaProductoEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Categoria" />
+
+        <!-- Contenedor horizontal para el EditText + botÃ³n de escanear -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/codigoBarrasEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Código de barras" />
+
+            <ImageButton
+                android:id="@+id/btnEscanear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_camera"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Escanear código"
+                android:padding="8dp" />
+        </LinearLayout>
+        <com.budiyev.android.codescanner.CodeScannerView
+            android:id="@+id/codeScannerView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/guardarProductoButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#211E1E"
+            android:text="Guardar Producto"
+            app:cornerRadius="8dp" />
+
+        <Button
+            android:id="@+id/cancelarButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#B00020"
+            android:text="Cancelar"
+            app:cornerRadius="8dp" />
+    </LinearLayout>
+</ScrollView>

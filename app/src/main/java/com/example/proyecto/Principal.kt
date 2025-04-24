@@ -1,6 +1,9 @@
 package com.example.proyecto
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -37,14 +40,34 @@ class Principal : AppCompatActivity() {
                 .replace(R.id.fragment_container, ventas())
                 .commit()
             navigationView.setCheckedItem(R.id.idVentas)
+            supportActionBar?.title = "Ventas"
         }
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
             val fragment = when (menuItem.itemId) {
-                R.id.idVentas -> ventas()
-                R.id.idInv -> inventario()
-                R.id.idClientes -> clientes()
-                R.id.idConsVentas -> consultaVentas()
+                R.id.idVentas -> {
+                    supportActionBar?.title = "Ventas"
+                    ventas()
+                }
+                R.id.idInv -> {
+                    supportActionBar?.title = "Inventario"
+                    inventario()
+                }
+                R.id.idClientes -> {
+                    supportActionBar?.title = "Clientes"
+                    clientes()
+                }
+                R.id.idConsVentas -> {
+                    supportActionBar?.title = "Consulta de ventas"
+                    consultaVentas()
+                }
+                R.id.idCerrar -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    return@setNavigationItemSelectedListener true  // Salimos aqui
+                }
+
                 else -> null
             }
 
@@ -57,5 +80,6 @@ class Principal : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
+
     }
 }

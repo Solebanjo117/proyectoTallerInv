@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "InventarioRopa.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION); // Llamada correcta a super
@@ -110,7 +110,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "('vendedor2', 'clave456');");
 
         db.execSQL("INSERT INTO productos (nombre, talla, color, precio, cantidad, categoria, codigoBarras) VALUES " +
-                "('Playera BÃ¡sica', 'M', 'Blanco', 150.00, 50, 'Ropa', '1234567890123')," +
+                "('Playera Basica', 'M', 'Blanco', 150.00, 50, 'Ropa', '1234567890123')," +
                 "('Jeans Slim Fit', '32', 'Azul', 450.00, 30, 'Ropa', '2234567890123')," +
                 "('Sudadera Hoodie', 'L', 'Negro', 550.00, 20, 'Ropa', '3234567890123');");
 
@@ -120,9 +120,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 "(3, 'ENTRADA', 20, '2025-04-09 10:10:00');");
 
         db.execSQL("INSERT INTO clientes (nombre, telefono, direccion, deuda) VALUES " +
-                "('Juan PÃ©rez', '555-1234', 'Calle Falsa 123', 500.00)," +
-                "('Ana MartÃ­nez', '555-5678', 'Av. Reforma 456', 0.00)," +
-                "('Carlos GÃ³mez', '555-9876', 'Boulevard Central 789', 250.00);");
+                "('Juan Perez', '555-1234', 'Calle Falsa 123', 500.00)," +
+                "('Ana Martinez', '555-5678', 'Av. Reforma 456', 0.00)," +
+                "('Carlos Gomez', '555-9876', 'Boulevard Central 789', 250.00);");
 
         db.execSQL("INSERT INTO ventas (id_cliente, total, fecha) VALUES " +
                 "(1, 600.00, '2025-04-09 12:30:00')," +
