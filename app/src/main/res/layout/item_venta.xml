@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFF"
+    android:elevation="2dp">
+
+    <TextView
+        android:id="@+id/textClienteVenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cliente"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textFechaVenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/textTotalVenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total"
+        android:textSize="14sp"
+        android:textColor="#2E7D32"/>
+</LinearLayout>

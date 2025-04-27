@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Filtro de fecha y botÃ³n buscar -->
+    <!-- Filtro por fecha y bÃºsqueda -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/dateTextView"
@@ -30,10 +31,32 @@
             app:cornerRadius="8dp" />
     </LinearLayout>
 
+    <!-- Filtro por nombre del cliente -->
+    <EditText
+        android:id="@+id/searchClientEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Buscar por nombre de cliente"
+        android:inputType="textPersonName"
+        android:layout_marginTop="8dp" />
+
     <!-- Lista de ventas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/salesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_marginTop="8dp" />
+
+    <!-- Total de ventas -->
+    <TextView
+        android:id="@+id/totalVentasTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total del día: $0.00"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:gravity="end"
+        android:layout_marginTop="8dp" />
+
 </LinearLayout>

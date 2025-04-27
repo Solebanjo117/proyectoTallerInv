@@ -17,7 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nombre">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nombreEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -26,7 +28,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Apellido">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/apellidoEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -35,27 +39,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Teléfono">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/telefonoEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"/>
+            android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Correo">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        android:hint="Correo"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Dirección">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/direccionEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -72,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:backgroundTint="#211E1E"
             android:text="Guardar" />
 
         <Button
@@ -79,6 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:backgroundTint="#211E1E"
             android:text="Cancelar" />
     </LinearLayout>
 

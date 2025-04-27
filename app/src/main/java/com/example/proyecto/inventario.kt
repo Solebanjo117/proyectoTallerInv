@@ -1,5 +1,6 @@
 package com.example.proyecto
 
+import BarcodeScanner
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
@@ -12,9 +13,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.budiyev.android.codescanner.CodeScannerView
 import com.example.proyecto.adapters.ProductoAdapter
 import com.example.proyecto.models.Producto
 
@@ -33,6 +36,7 @@ class inventario : Fragment() {
     private lateinit var searchEditText: EditText
     private lateinit var newProductButton: Button
     private lateinit var dbHelper: SQLiteOpenHelper
+    private lateinit var barScanner : BarcodeScanner
     private var listaProductos = mutableListOf<Producto>()
 
     override fun onCreateView(
@@ -48,6 +52,10 @@ class inventario : Fragment() {
         recyclerView = view.findViewById(R.id.inventoryRecyclerView)
         searchEditText = view.findViewById(R.id.searchProductEditText)
         newProductButton = view.findViewById(R.id.newProductButton)
+        val scanButton = view.findViewById<ImageButton>(R.id.scanBarcodeButton)
+        val codeScannerView = view.findViewById<CodeScannerView>(R.id.codeScannerView)
+        barScanner = BarcodeScanner(codeScannerView,searchEditText,scanButton)
+        barScanner.initScanner()
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -58,7 +66,6 @@ class inventario : Fragment() {
         newProductButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, productos_registro())
-                .addToBackStack(null)
                 .commit()
         }
 
@@ -73,6 +80,10 @@ class inventario : Fragment() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
+    }
+    override fun onPause() {
+        super.onPause()
+        barScanner.stopScanner()  // Detener el escÃ¡ner cuando se pausa el fragmento
     }
 
     private fun cargarProductos() {
@@ -103,8 +114,19 @@ class inventario : Fragment() {
 
         recyclerView.adapter = ProductoAdapter(listaProductos, object : ProductoAdapter.OnProductoClickListener {
             override fun onEditar(producto: Producto) {
-                Toast.makeText(requireContext(), "Editar: ${producto.nombre}", Toast.LENGTH_SHORT).show()
-                // AquÃ­ puedes abrir tu formulario de ediciÃ³n usando FragmentTransaction
+                val bundle = Bundle().apply {
+                    putParcelable("producto", producto)
+                    putBoolean("esEdicion", true)
+                }
+
+                val fragment = productos_registro().apply {
+                    arguments = bundle
+                }
+
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit()
+
             }
 
             override fun onEliminar(producto: Producto) {

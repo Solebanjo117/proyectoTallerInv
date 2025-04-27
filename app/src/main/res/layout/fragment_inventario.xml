@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Buscador + BotÃ³n Nuevo Producto -->
+    <!-- Buscador + BotÃ³n Escanear + BotÃ³n Nuevo Producto -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +20,15 @@
             android:layout_height="wrap_content"
             android:hint="Buscar producto" />
 
+        <ImageButton
+            android:id="@+id/scanBarcodeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_camera"
+            android:contentDescription="Escanear cÃ³digo de barras"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp" />
+
         <Button
             android:id="@+id/newProductButton"
             android:layout_width="wrap_content"
@@ -28,6 +37,14 @@
             android:text="Agregar"
             app:cornerRadius="8dp" />
     </LinearLayout>
+
+    <!-- FrameLayout adicional para contenido dinÃ¡mico -->
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/codeScannerView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"/>
 
     <!-- Lista de Productos -->
     <androidx.recyclerview.widget.RecyclerView

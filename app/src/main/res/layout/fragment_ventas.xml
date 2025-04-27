@@ -4,35 +4,96 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#F5F5F5">
 
-    <!-- Buscador y CÃ¡mara -->
+    <!-- SelecciÃ³n de cliente -->
+    <AutoCompleteTextView
+        android:id="@+id/clientAutoComplete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Seleccionar cliente"
+        android:inputType="text"
+        android:padding="8dp"
+        android:background="@android:drawable/edit_text" />
+
+    <!-- Separador -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@android:color/transparent" />
+
+    <!-- Buscador de producto y botÃ³n de cÃ¡mara -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <EditText
             android:id="@+id/searchEditText"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Buscar producto" />
+            android:hint="Buscar producto"
+            android:padding="8dp"
+            android:background="@android:drawable/edit_text" />
 
         <ImageButton
             android:id="@+id/cameraButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="Escanear codigo de barras"
-            android:src="@android:drawable/ic_menu_camera" />
+            android:contentDescription="Escanear cÃ³digo de barras"
+            android:src="@android:drawable/ic_menu_camera"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"/>
     </LinearLayout>
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/codeScannerView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"/>
 
     <!-- Lista de productos -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:paddingTop="8dp" />
+    <!-- Dinero recibido -->
+    <EditText
+        android:id="@+id/receivedAmountEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dinero recibido"
+        android:inputType="numberDecimal"
+        android:padding="8dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginTop="8dp"/>
+    <!-- Resumen de la venta -->
+    <TextView
+        android:id="@+id/summaryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total: $0.00 | Productos: 0"
+        android:textStyle="bold"
+        android:gravity="end"
+        android:textSize="16sp"
+        android:padding="8dp"/>
+    <TextView
+        android:id="@+id/changeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cambio: $0.00"
+        android:textStyle="bold"
+        android:gravity="end"
+        android:textSize="16sp"
+        android:padding="8dp" />
+
+
+
 
     <!-- BotÃ³n de pagar -->
     <Button
@@ -41,5 +102,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#211E1E"
         android:text="Pagar"
-        app:cornerRadius="8dp" />
+        android:textColor="#FFFFFF"
+        app:cornerRadius="8dp"
+        android:layout_marginTop="8dp" />
 </LinearLayout>

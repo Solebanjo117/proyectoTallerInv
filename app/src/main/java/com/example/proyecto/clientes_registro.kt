@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
+import com.google.android.material.textfield.TextInputEditText
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,7 +45,10 @@ class clientes_registro : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val btnGuardar = view.findViewById<Button>(R.id.btnGuardarCliente)
         val btnCancelar = view.findViewById<Button>(R.id.btnCancelarCliente)
-
+        val nombreInput = view.findViewById<TextInputEditText>(R.id.nombreEditText)
+        val telefonoInput = view.findViewById<TextInputEditText>(R.id.telefonoEditText)
+        val direccionInput = view.findViewById<TextInputEditText>(R.id.direccionEditText)
+        val apellidos = view.findViewById<TextInputEditText>(R.id.apellidoEditText)
         val volverAClientes = {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, clientes()) // <- AquÃ­ va el fragmento original de clientes
@@ -52,8 +57,25 @@ class clientes_registro : Fragment() {
         }
 
         btnGuardar.setOnClickListener {
-            // AquÃ­ podrÃ­as validar y guardar los datos antes
-            // ...
+            val nombre = nombreInput.text.toString().trim() + " " + apellidos.text.toString().trim()
+            val telefono = telefonoInput.text.toString().trim()
+            val direccion = direccionInput.text.toString().trim()
+
+            if (nombre.isNotEmpty()) {
+                val dbHelper = DBHelper(requireContext())
+                val db = dbHelper.writableDatabase
+
+                val sql = "INSERT INTO clientes (nombre, telefono, direccion) VALUES (?, ?, ?)"
+                val statement = db.compileStatement(sql)
+                statement.bindString(1, nombre)
+                statement.bindString(2, telefono)
+                statement.bindString(3, direccion)
+                statement.executeInsert()
+
+                Toast.makeText(requireContext(), "Cliente guardado", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "El nombre es obligatorio", Toast.LENGTH_SHORT).show()
+            }
             volverAClientes()
         }
 

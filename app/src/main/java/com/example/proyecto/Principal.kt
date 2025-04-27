@@ -12,6 +12,7 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.navigation.NavigationView
 
 class Principal : AppCompatActivity() {
@@ -51,7 +52,7 @@ class Principal : AppCompatActivity() {
                 }
                 R.id.idInv -> {
                     supportActionBar?.title = "Inventario"
-                    inventario()
+                    inventario() // Instanciamos el fragmento 'inventario'
                 }
                 R.id.idClientes -> {
                     supportActionBar?.title = "Clientes"
@@ -67,10 +68,10 @@ class Principal : AppCompatActivity() {
                     finish()
                     return@setNavigationItemSelectedListener true  // Salimos aqui
                 }
-
                 else -> null
             }
 
+            // AquÃ­ reemplazamos el fragmento solo si no es null
             fragment?.let {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, it)

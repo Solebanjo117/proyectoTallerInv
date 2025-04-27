@@ -1,8 +1,11 @@
 package com.example.proyecto;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.proyecto.models.Producto;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -11,6 +14,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION); // Llamada correcta a super
+
     }
 
     @Override
@@ -31,6 +35,34 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS pagos");
         onCreate(db);
     }
+    public void updateProducto(Producto producto) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("nombre", producto.getNombre());
+        values.put("talla", producto.getTalla());
+        values.put("color", producto.getColor());
+        values.put("precio", producto.getPrecio());
+        values.put("cantidad", producto.getCantidad());
+        values.put("categoria", producto.getCategoria());
+
+        db.update("productos", values, "id = ?", new String[]{String.valueOf(producto.getId())});
+    }
+
+    public void insertProducto(Producto producto) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("nombre", producto.getNombre());
+        values.put("talla", producto.getTalla());
+        values.put("color", producto.getColor());
+        values.put("precio", producto.getPrecio());
+        values.put("cantidad", producto.getCantidad());
+        values.put("categoria", producto.getCategoria());
+        values.put("codigoBarras", producto.getCodigoBarras());
+
+        db.insert("productos", null, values);
+    }
+
+
     private void createTables(SQLiteDatabase db){
         db.execSQL(
                 "CREATE TABLE usuarios (" +

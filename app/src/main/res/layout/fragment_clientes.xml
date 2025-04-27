@@ -20,13 +20,6 @@
             android:hint="Buscar cliente" />
 
         <Button
-            android:id="@+id/searchClientButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#211E1E"
-            android:text="Buscar" />
-
-        <Button
             android:id="@+id/newClientButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

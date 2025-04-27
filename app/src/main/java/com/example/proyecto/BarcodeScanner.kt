@@ -3,16 +3,70 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.CodeScannerView
 import com.budiyev.android.codescanner.DecodeCallback
+import com.budiyev.android.codescanner.ErrorCallback
+import android.Manifest
 import com.example.proyecto.R
-class BarcodeScanner : Fragment() {
+class BarcodeScanner(private val scannerView: CodeScannerView,
+                     private val codigoBarrasEditText: EditText,
+                     private val escanearButton: ImageButton
+) : Fragment(
+
+) {
 
     private lateinit var codeScanner: CodeScanner
+    fun initScanner() {
+        codeScanner = CodeScanner(scannerView.context, scannerView)
+        codeScanner.decodeCallback = DecodeCallback {
+            scannerView.post {
+                codigoBarrasEditText.setText(it.text)
+                scannerView.visibility = View.GONE
+                codeScanner.stopPreview()
+            }
+        }
 
+        codeScanner.errorCallback = ErrorCallback {
+            scannerView.post {
+                Toast.makeText(scannerView.context, "Error al usar la cÃ¡mara: ${it.message}", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        escanearButton.setOnClickListener {
+            startScan()
+        }
+
+        // ConfiguraciÃ³n del botÃ³n de escanear
+        scannerView.setOnClickListener {
+            codeScanner.startPreview()
+        }
+    }
+    // Verifica permisos y empieza el escaneo
+    private fun startScan() {
+        if (ContextCompat.checkSelfPermission(scannerView.context, Manifest.permission.CAMERA)
+            == PackageManager.PERMISSION_GRANTED) {
+            scannerView.visibility = View.VISIBLE
+            codeScanner.startPreview()
+        } else {
+            ActivityCompat.requestPermissions(
+                (scannerView.context as androidx.fragment.app.FragmentActivity),
+                arrayOf(Manifest.permission.CAMERA),
+                101
+            )
+        }
+    }
+    fun stopScanner() {
+        codeScanner.releaseResources()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
