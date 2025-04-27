@@ -281,7 +281,7 @@ searchEditText.addTextChangedListener(object : TextWatcher{
         carritoAdapter.notifyDataSetChanged()
         actualizarResumenVenta()
 
-        Toast.makeText(requireContext(), "Venta realizada con Ã©xito", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Venta realizada con éxito", Toast.LENGTH_SHORT).show()
         limpiarCampos()
         // Actualizar la deuda del cliente
 
